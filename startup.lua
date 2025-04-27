@@ -95,16 +95,23 @@ if settings.get("sourceType") == 1 then
 		else
 			print("\nProgram has no runner. Re-Initializing.")
 			term.setTextColor(colors.black)
+
 			os.sleep(2)
 			initialize()
 		end
 		
 	else
+
 		term.setTextColor(colors.white)
 		print("\nError in URL. Re-Initializing.")
 		term.setTextColor(colors.black)
+		
+		settings.set("sourceURL", "")
+		settings.save(".settings")
+
 		os.sleep(2)
 		initialize()
+
 	end
 
 elseif settings.get("sourceType") == 2 then
