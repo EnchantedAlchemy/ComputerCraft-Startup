@@ -27,7 +27,7 @@ function initialize()
 	})
 	settings.define("sourceType", {
 		description = "Whether the source is a git repository or a raw text file.",
-		default = 2,
+		default = 0,
 		type = "number"
 	})
 	
@@ -59,7 +59,7 @@ function initialize()
 end
 
 settings.load(".settings")
-if settings.get("sourceURL") == nil and settings.get("sourceType") ~= 3 then
+if (settings.get("sourceURL") == nil or settings.get("sourceURL") == "") and settings.get("sourceType") ~= 3 then
 	initialize()
 end
 
@@ -96,8 +96,8 @@ if settings.get("sourceType") == 1 then
 			print("\nProgram has no runner. Re-Initializing.")
 			term.setTextColor(colors.black)
 
-			settings.set("sourceURL", nil)
-			settings.set("sourceType", nil)
+			settings.set("sourceURL", "")
+			settings.set("sourceType", 0)
 			settings.save(".settings")
 
 			os.sleep(2)
@@ -110,8 +110,8 @@ if settings.get("sourceType") == 1 then
 		print("\nError in URL. Re-Initializing.")
 		term.setTextColor(colors.black)
 
-		settings.set("sourceURL", nil)
-		settings.set("sourceType", nil)
+		settings.set("sourceURL", "")
+		settings.set("sourceType", 0)
 		settings.save(".settings")
 
 		os.sleep(2)
