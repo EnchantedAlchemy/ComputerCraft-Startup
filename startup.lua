@@ -96,6 +96,10 @@ if settings.get("sourceType") == 1 then
 			print("\nProgram has no runner. Re-Initializing.")
 			term.setTextColor(colors.black)
 
+			settings.set("sourceURL", nil)
+			settings.set("sourceType", nil)
+			settings.save(".settings")
+
 			os.sleep(2)
 			initialize()
 		end
@@ -105,8 +109,9 @@ if settings.get("sourceType") == 1 then
 		term.setTextColor(colors.white)
 		print("\nError in URL. Re-Initializing.")
 		term.setTextColor(colors.black)
-		
-		settings.set("sourceURL", "")
+
+		settings.set("sourceURL", nil)
+		settings.set("sourceType", nil)
 		settings.save(".settings")
 
 		os.sleep(2)
@@ -129,6 +134,11 @@ elseif settings.get("sourceType") == 2 then
 		term.setTextColor(colors.white)
 		print("\nError in URL. Re-Initializing.")
 		term.setTextColor(colors.black)
+
+		settings.set("sourceURL", nil)
+		settings.set("sourceType", nil)
+		settings.save(".settings")
+
 		os.sleep(2)
 		initialize()
 	end
