@@ -134,8 +134,8 @@ elseif settings.get("sourceType") == 2 then
 		print("\nError in URL. Re-Initializing.")
 		term.setTextColor(colors.black)
 
-		settings.set("sourceURL", nil)
-		settings.set("sourceType", nil)
+		settings.set("sourceURL", "")
+		settings.set("sourceType", 0)
 		settings.save(".settings")
 
 		os.sleep(2)
