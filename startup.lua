@@ -69,21 +69,36 @@ textFunctions.clear()
 
 if settings.get("sourceType") == 1 then
 
-	shell.run("delete tempGit")
+	shell.run("delete mainProgram")
 	textFunctions.clear()
 
 	local function createMain()
-		shell.run("gitget " .. settings.get("sourceURL") .. " tempGit")
-		if fs.exists("tempGit") == false then error() end
+		shell.run("gitget " .. settings.get("sourceURL") .. " mainProgram")
+		if fs.exists("mainProgram") == false then error() end
 	end
 
 	if pcall(createMain) then
-		shell.run("move tempGit/" .. fs.list("tempGit")[1] .. " main")
-		shell.run("delete tempGit")
+		
+		local foundRunner = false
+		for i,v in pairs(fs.list("mainProgram")) do
+			if string.lower(v) == "runner" then
+				foundRunner = true
+				break
+			end
+		end
 
 		term.setTextColor(colors.white)
 		textFunctions.clear()
-		shell.run("main")
+
+		if foundRunner then
+			shell.run("mainProgram/runner")
+		else
+			print("\nProgram has no runner. Re-Initializing.")
+			term.setTextColor(colors.black)
+			os.sleep(2)
+			initialize()
+		end
+		
 	else
 		term.setTextColor(colors.white)
 		print("\nError in URL. Re-Initializing.")
@@ -95,14 +110,14 @@ if settings.get("sourceType") == 1 then
 elseif settings.get("sourceType") == 2 then
 
 	local function createMain()
-		shell.run("wget " .. settings.get("sourceURL") .. " main")
-		if fs.exists("main") == false then error() end
+		shell.run("wget " .. settings.get("sourceURL") .. " runner")
+		if fs.exists("runner") == false then error() end
 	end
 
 	if pcall(createMain) then
 		term.setTextColor(colors.white)
 		textFunctions.clear()
-		shell.run("main")
+		shell.run("runner")
 	else
 		term.setTextColor(colors.white)
 		print("\nError in URL. Re-Initializing.")
