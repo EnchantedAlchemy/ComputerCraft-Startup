@@ -101,7 +101,7 @@ if settings.get("sourceType") == 1 then
 			settings.save(".settings")
 
 			os.sleep(2)
-			initialize()
+			os.reboot()
 		end
 		
 	else
@@ -115,8 +115,7 @@ if settings.get("sourceType") == 1 then
 		settings.save(".settings")
 
 		os.sleep(2)
-		initialize()
-
+		os.reboot()
 	end
 
 elseif settings.get("sourceType") == 2 then
@@ -140,7 +139,7 @@ elseif settings.get("sourceType") == 2 then
 		settings.save(".settings")
 
 		os.sleep(2)
-		initialize()
+		os.reboot()
 	end
 
 end
