@@ -47,6 +47,14 @@ function initialize()
 	end
 
 	textFunctions.clear()
+	if fs.find("basalt.lua")[1] == nil then
+		useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
+		if useBasalt == 1 then
+			settings.set("useBasalt", true)
+		end
+	end
+
+	textFunctions.clear()
 	sourceType = textFunctions.choicePrompt("What is your code source?:", {"Git Repository", "Raw Text File", "No Source"})
 	settings.set("sourceType", sourceType)
 
@@ -54,14 +62,6 @@ function initialize()
 	if sourceType ~= 3 then
 		sourceURL = textFunctions.prompt("Enter the URL to your code source:")
 		settings.set("sourceURL", sourceURL)
-	end
-
-	textFunctions.clear()
-	if fs.find("basalt.lua")[1] == nil then
-		useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
-		if useBasalt == 1 then
-			settings.set("useBasalt", true)
-		end
 	end
 
 	textFunctions.clear()
