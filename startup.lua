@@ -30,6 +30,11 @@ function initialize()
 		default = 0,
 		type = "number"
 	})
+	settings.define("useBasalt", {
+		description = "Whether the computer requires Basalt.",
+		default = false,
+		type = "boolean"
+	})
 	
 	textFunctions.clear()
 	setupMode = textFunctions.choicePrompt("Enter a value:", {"Setup", "Delete Program"})
@@ -53,6 +58,12 @@ function initialize()
 	end
 
 	textFunctions.clear()
+	useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
+	if useBasalt == 1 then
+		settings.set("useBasalt", true)
+	end
+
+	textFunctions.clear()
 
 	settings.save(".settings")
 
@@ -62,9 +73,12 @@ settings.load(".settings")
 if (settings.get("sourceURL") == nil or settings.get("sourceURL") == "") and settings.get("sourceType") ~= 3 then
 	initialize()
 end
+if settings.get("useBasalt") == true and fs.find("basalt")[1] == nil then
+	shell.run("wget run https://raw.githubusercontent.com/Pyroxenium/Basalt/refs/heads/master/docs/install.lua release latest.lua")
+end
 
 term.setTextColor(colors.black)
-shell.run("delete main")
+shell.run("delete mainProgram")
 textFunctions.clear()
 
 if settings.get("sourceType") == 1 then
