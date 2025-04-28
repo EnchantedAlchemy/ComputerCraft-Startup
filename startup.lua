@@ -96,7 +96,7 @@ if settings.get("sourceType") == 1 then
 		
 		local foundRunner = false
 		for i,v in pairs(fs.list("mainProgram")) do
-			if string.lower(v) == "runner" then
+			if string.lower(v) == "runner" or string.lower(v) == "runner.lua" then
 				foundRunner = true
 				break
 			end
