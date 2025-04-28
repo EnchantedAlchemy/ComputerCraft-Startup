@@ -1,4 +1,3 @@
-
 term.setTextColor(colors.black)
 if fs.find("gitget")[1] == nil then
 	shell.run("wget https://gist.githubusercontent.com/SquidDev/e0f82765bfdefd48b0b15a5c06c0603b/raw/clone.min.lua gitget")
