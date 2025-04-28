@@ -75,7 +75,7 @@ if (settings.get("sourceURL") == nil or settings.get("sourceURL") == "") and set
 	initialize()
 end
 if settings.get("useBasalt") == true and fs.find("basalt.lua")[1] == nil then
-	shell.run("wget run https://raw.githubusercontent.com/Pyroxenium/Basalt/refs/heads/master/docs/install.lua release latest.lua")
+	shell.run("wget run https://raw.githubusercontent.com/Pyroxenium/Basalt2/main/install.lua -r")
 end
 
 term.setTextColor(colors.black)
