@@ -57,7 +57,7 @@ function initialize()
 	end
 
 	textFunctions.clear()
-	if fs.find("basalt")[1] == nil then
+	if fs.find("basalt.lua")[1] == nil then
 		useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
 		if useBasalt == 1 then
 			settings.set("useBasalt", true)
@@ -74,7 +74,7 @@ settings.load(".settings")
 if (settings.get("sourceURL") == nil or settings.get("sourceURL") == "") and settings.get("sourceType") ~= 3 then
 	initialize()
 end
-if settings.get("useBasalt") == true and fs.find("basalt")[1] == nil then
+if settings.get("useBasalt") == true and fs.find("basalt.lua")[1] == nil then
 	shell.run("wget run https://raw.githubusercontent.com/Pyroxenium/Basalt/refs/heads/master/docs/install.lua release latest.lua")
 end
 
