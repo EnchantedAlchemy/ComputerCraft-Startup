@@ -58,9 +58,11 @@ function initialize()
 	end
 
 	textFunctions.clear()
-	useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
-	if useBasalt == 1 then
-		settings.set("useBasalt", true)
+	if fs.find("basalt")[1] == nil then
+		useBasalt = textFunctions.choicePrompt("Do you want to install Basalt Graphics API?:", {"Yes", "No"})
+		if useBasalt == 1 then
+			settings.set("useBasalt", true)
+		end
 	end
 
 	textFunctions.clear()
